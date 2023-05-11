@@ -4,7 +4,10 @@ require("dotenv").config();
 const express = require("express") 
 
 // import Book model
-const Book = require("./books/model")
+const Book = require("./books/model") 
+
+//import book routes 
+const bookRouter = require("./books/routes")
 
 // define a port for our server to run on
 const port = 5002
@@ -20,7 +23,9 @@ app.use(express.json())
 // if the table doesn't already exist then create a new one
 const syncTables = () => {
     Book.sync()
-}
+} 
+
+app.use(bookRouter)
 
 // req = request 
 // res = response
